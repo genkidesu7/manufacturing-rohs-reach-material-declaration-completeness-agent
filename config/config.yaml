@@ -1,0 +1,11 @@
+# Runtime parameters — loaded by AgentRegistry / cli.py and passed as Graph(config=...).
+# Separate from config/agent.yaml (the static manifest).
+
+max_retry: 3
+timeout_s: 30
+memory_enabled: false
+
+# Human review is enforced through the S-3 output disclaimer and the downstream
+# compliance-reviewer sign-off, not through the framework interrupt() mechanism.
+hitl:
+  enabled: false

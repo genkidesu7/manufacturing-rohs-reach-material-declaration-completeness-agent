@@ -1,0 +1,28 @@
+# Agent Manifest — AgentRegistry entry point
+# AgentRegistry reads every key below at ROOT level — do NOT nest keys under an
+# `agent:` block. Runtime parameters live in config/config.yaml.
+id: "MFG-C2-143"
+name: "Manufacturing RoHS/REACH Material Declaration Completeness Agent"
+namespace: "mfg"
+version: "0.1.0"
+enabled: true
+category: "Cat 2"
+generation_mode: "deterministic"
+industry: "MFG"
+
+# Opaque compatibility metadata (not an inheritance selector).
+base_type: "DocGenerationAgent"
+
+# Entry point — single dotted import path (module.Class).
+class: "src.graph.graph.MaterialDeclarationCompletenessGraph"
+
+# Security
+required_trust_level: "VERIFIED_EXTERNAL"
+
+# Compile-time gates — every ctx.secrets.require() key and every optional extra
+# actually used by the agent.
+requires:
+  secrets:
+    - "ANTHROPIC_API_KEY"
+    - "SUBSTANCE_INDEX_API_KEY"
+  extras: []
